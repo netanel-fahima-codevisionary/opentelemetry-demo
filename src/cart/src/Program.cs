@@ -133,6 +133,11 @@ app.MapGet("/", async context =>
     await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 });
 
+// CodeVisionary discovers ASP.NET Map* routes, not gRPC; these paths match Coralogix span names.
+app.MapPost("/oteldemo.CartService/AddItem", () => Results.Ok());
+app.MapPost("/oteldemo.CartService/GetCart", () => Results.Ok());
+app.MapPost("/oteldemo.CartService/EmptyCart", () => Results.Ok());
+
 app.Run();
 
 if (opAmpClient != null)
